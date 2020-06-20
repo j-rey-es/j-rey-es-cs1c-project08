@@ -2,6 +2,11 @@ package quickSortTest;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+/**
+ * Performs benchmarking of quickSort over range of recursion limits
+ *
+ * @author Foothill College, Joel R
+ */
 public class RecursionLimitBench
 {
     /**
