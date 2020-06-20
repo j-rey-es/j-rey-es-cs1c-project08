@@ -1,7 +1,8 @@
 package quickSortTest;
 
 
-import java.time.chrono.MinguoChronology;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class RecursionLimitBench
 {
@@ -13,7 +14,6 @@ public class RecursionLimitBench
         return RandomArray;
 
     }
-
     public static double qSortRuntime (Integer[] testArray)
     {
         long startTime, estimatedTime = 0;
@@ -33,26 +33,26 @@ public class RecursionLimitBench
     public static void main(String[] args) throws Exception
     {
 
-        int [] arraySizes = {20000,50000,100000,200000,500000,1000000,5000000,10000000};
-        final int MIN_ARRAY_SIZE = 200000;
-        final int MAX_ARRAY_SIZE = 10000000;
-        final int NUM_OF_SIZE_INTERVALS = 20;
-        final int MIN_RECURSION_LIMIT =  2;
+        int [] arraySizes = {20000,30000,40000,50000,60000,70000,80000,100000,200000,400000,600000,800000,1000000,2000000,4000000,6000000,8000000,10000000,15000000,20000000};
+        final int MAX_ARRAY_SIZE = 20000000;
+        int recursionLimit = 2;
         final int MAX_RECURSION_LIMIT = 300;
-        //arraySizes = new int[NUM_OF_SIZE_INTERVALS];
-
+        PrintWriter BenchmarkResults;
         Integer randomArray [] = generateRandomArray(MAX_ARRAY_SIZE);
 
-       /* for (int i = 0; i<arraySizes.length;  i++)
-        {
-            arraySizes[i] = MIN_ARRAY_SIZE + (((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) / (NUM_OF_SIZE_INTERVALS)) * i);
-        } */
 
-        for (int j = MIN_RECURSION_LIMIT; j < MAX_RECURSION_LIMIT; j = j+2)
+        try
         {
-            String runtimeRow = new String();
-            FHsort.setRecursionLimit(j);
-            System.out.print(j + ",");
+            BenchmarkResults = new PrintWriter("resources/BenchmarkResults.csv");
+            String headerRow = "0,";
+            for (int i = 0; i < arraySizes.length; i++)
+                headerRow = headerRow + arraySizes[i] + ",";
+            BenchmarkResults.println(headerRow);
+            while(recursionLimit < MAX_RECURSION_LIMIT+2)
+            {
+                String runtimeRow = new String();
+                FHsort.setRecursionLimit(recursionLimit);
+                BenchmarkResults.print(recursionLimit + ",");
                 for (int k = 0; k < arraySizes.length; k++)
                 {
                     Integer [] arrayOfInts = new Integer[arraySizes[k]];
@@ -60,7 +60,15 @@ public class RecursionLimitBench
                         arrayOfInts[n] = randomArray[n];
                     runtimeRow = runtimeRow + qSortRuntime(arrayOfInts) + ",";
                 }
-            System.out.println(runtimeRow);
+                BenchmarkResults.println(runtimeRow);
+                recursionLimit +=2;
+            }
+            BenchmarkResults.close();
         }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("File Not Found");
+        }
+
     }
 }
