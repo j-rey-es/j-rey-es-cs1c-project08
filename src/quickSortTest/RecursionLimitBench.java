@@ -1,11 +1,14 @@
 package quickSortTest;
-
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class RecursionLimitBench
 {
+    /**
+     * Generates a random array given the size of a random array
+     * @param size, int, size of random array
+     * @return, Integer[], Array with random values
+     */
     public static Integer[] generateRandomArray(int size){
         int i;
         Integer RandomArray[] = new Integer [size];
@@ -14,6 +17,12 @@ public class RecursionLimitBench
         return RandomArray;
 
     }
+
+    /**
+     * Calculates the average qSortRuntime for an array of Integers
+     * @param testArray, an array of Integers
+     * @return double, the estimated average runtime
+     */
     public static double qSortRuntime (Integer[] testArray)
     {
         long startTime, estimatedTime = 0;
