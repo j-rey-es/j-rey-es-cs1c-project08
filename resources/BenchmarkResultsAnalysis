@@ -1,0 +1,5 @@
+    The first graph shows that there is a drop in runtime early on in the recursion limits tested. This effect is only seen
+in smaller array sizes (>2000000). With larger array sizes the increase in recursion limit does not have the same effect.
+There is an increase in runtime after the initial drop.
+    In the zoomed graph we can see that the drop in runtime occurs around 4 recursion limit for arrays with sizes less
+than 2M. After 4 recursion limit, the runtime begins to level out and slightly increase.

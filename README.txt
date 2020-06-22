@@ -15,5 +15,16 @@ src/quickSortTest/RecursionLimitBench.java
 resources/BenchmarkResults.csv
     - Results of RecursionLimitBench.java
 
+resources/BenchmarkResultsAnalysis.txt
+    - Analysis of results from graphs
+
+resources/RecursionLimitVsTime.jpg
+    - Results of RecursionLimitBench.java graphed
+    - Recursion Limit vs Time (ns)
+
+resources/RecursionLimitVsTimeZoomed.jpg
+    - Results of RecursionLimitBench.java graphed with interest area
+    - Scale adjusted for interest area (0-10 recursion limit)
+
 README.txt
     - description of submitted files
